@@ -22,18 +22,24 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Book save(Book book) {
+        Session session = null;
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try {
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(book);
             transaction.commit();
-            return book;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't insert a book: " + book.getTitle(), e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
+        return book;
     }
 
     @Override
