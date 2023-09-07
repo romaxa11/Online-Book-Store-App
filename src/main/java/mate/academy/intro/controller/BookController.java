@@ -1,6 +1,7 @@
 package mate.academy.intro.controller;
 
 import java.util.List;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.BookDto;
 import mate.academy.intro.dto.BookSearchParametersDto;
@@ -57,7 +58,7 @@ public class BookController {
     }
 
     @PostMapping
-    public BookDto save(@RequestBody CreateBookRequestDto requestDto) {
+    public BookDto save(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.save(requestDto);
     }
 }
