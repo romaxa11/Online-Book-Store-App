@@ -1,5 +1,6 @@
 package mate.academy.intro.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.BookDto;
@@ -11,6 +12,7 @@ import mate.academy.intro.model.Book;
 import mate.academy.intro.repository.book.BookRepository;
 import mate.academy.intro.repository.book.BookSpecificationBuilder;
 import mate.academy.intro.service.BookService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +31,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> getAll() {
-        return bookRepository.findAll().stream()
+    public List<BookDto> getAll(Pageable pageable) {
+        return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
@@ -45,6 +47,13 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> getAllByAuthor(String author) {
         return bookRepository.findAllByAuthorContainingIgnoreCase(author).stream()
+                .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<BookDto> getAllByPriceBetween(BigDecimal from, BigDecimal to, Pageable pageable) {
+        return bookRepository.findAllByPriceBetween(from, to, pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
