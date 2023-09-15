@@ -3,13 +3,16 @@ package mate.academy.intro.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.regex.Pattern;
-import mate.academy.intro.dto.CreateBookRequestDto;
+import mate.academy.intro.dto.book.CreateBookRequestDto;
 
 public class TextValidator implements ConstraintValidator<Text, CreateBookRequestDto> {
     private static final String PATTERN_OF_TEXT = "^[A-z0-9- .,!@?:#$%&]{1,200}$";
 
     @Override
-    public boolean isValid(CreateBookRequestDto bookRequestDto, ConstraintValidatorContext context) {
+    public boolean isValid(
+            CreateBookRequestDto bookRequestDto,
+            ConstraintValidatorContext context
+    ) {
         String title = bookRequestDto.getTitle();
         String author = bookRequestDto.getAuthor();
         String description = bookRequestDto.getDescription();

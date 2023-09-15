@@ -2,7 +2,7 @@ package mate.academy.intro.repository.book.specification;
 
 import java.util.Arrays;
 import mate.academy.intro.model.Book;
-import mate.academy.intro.repository.SpecificationProvider;
+import mate.academy.intro.repository.specification.SpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +15,7 @@ public class AuthorSpecificationProvider implements SpecificationProvider<Book> 
 
     @Override
     public Specification<Book> getSpecification(String[] params) {
-        return (root, query, criteriaBuilder) -> root.get("author").in(Arrays.stream(params).toArray());
+        return (root, query, criteriaBuilder)
+                -> root.get("author").in(Arrays.stream(params).toArray());
     }
 }
