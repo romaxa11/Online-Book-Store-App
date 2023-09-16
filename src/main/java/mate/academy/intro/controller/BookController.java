@@ -79,7 +79,7 @@ public class BookController {
     @PutMapping(value = "/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public BookDto updateBook(@PathVariable Long id,
-                              @RequestBody CreateBookRequestDto requestDto) {
+                              @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.update(id, requestDto);
     }
 
