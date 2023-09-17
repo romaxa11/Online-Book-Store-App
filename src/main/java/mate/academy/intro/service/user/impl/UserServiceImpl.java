@@ -29,9 +29,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RegistrationException("Unable to complete registration");
         }
-        if (!request.getPassword().equals(request.getRepeatPassword())) {
-            throw new RegistrationException("Wrong password or repeatPassword...");
-        }
+
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());

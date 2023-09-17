@@ -1,8 +1,8 @@
 package mate.academy.intro.validation;
 
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.Objects;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.BeanWrapperImpl;
 
 public class FieldsMatchValidator implements ConstraintValidator<FieldMatch, Object> {
