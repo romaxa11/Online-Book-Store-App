@@ -1,4 +1,4 @@
-package mate.academy.intro.repository;
+package mate.academy.intro.repository.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 
