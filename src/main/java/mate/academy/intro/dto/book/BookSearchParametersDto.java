@@ -1,4 +1,4 @@
 package mate.academy.intro.dto.book;
 
-public record BookSearchParametersDto(String[] titles, String[] authors, String[] price) {
+public record BookSearchParametersDto(String[] titles, String[] authors) {
 }
