@@ -3,6 +3,7 @@ package mate.academy.intro.service.book;
 import java.math.BigDecimal;
 import java.util.List;
 import mate.academy.intro.dto.book.BookDto;
+import mate.academy.intro.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.intro.dto.book.BookSearchParametersDto;
 import mate.academy.intro.dto.book.CreateBookRequestDto;
 import org.springframework.data.domain.Pageable;
@@ -23,4 +24,6 @@ public interface BookService {
     void deleteById(Long id);
 
     List<BookDto> search(BookSearchParametersDto parameters);
+
+    List<BookDtoWithoutCategoryIds> findAllByCategoryId(Long categoryId, Pageable pageable);
 }
