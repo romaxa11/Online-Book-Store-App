@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.book.BookDto;
+import mate.academy.intro.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.intro.dto.book.BookSearchParametersDto;
 import mate.academy.intro.dto.book.CreateBookRequestDto;
 import mate.academy.intro.exception.EntityNotFoundException;
@@ -39,7 +40,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto getBookById(Long id) {
-        Book book = bookRepository.findById(id)
+        Book book = bookRepository.getBookById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find employee by id " + id));
         return bookMapper.toDto(book);
     }
@@ -75,6 +76,13 @@ public class BookServiceImpl implements BookService {
         Specification<Book> specification = bookSpecificationBuilder.build(parameters);
         return bookRepository.findAll(specification).stream()
                 .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> findAllByCategoryId(Long categoryId, Pageable pageable) {
+        return bookRepository.findAllByCategoryId(categoryId, pageable).stream()
+                .map(bookMapper::toDtoWithoutCategories)
                 .toList();
     }
 }
