@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import mate.academy.intro.validation.Cover;
@@ -24,5 +25,5 @@ public class CreateBookRequestDto {
     private String description;
     @Cover
     private String coverImage;
-    private Set<Long> categoriesIds;
+    private Set<Long> categoriesIds = new HashSet<>();
 }

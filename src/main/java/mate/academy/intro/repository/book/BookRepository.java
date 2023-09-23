@@ -15,14 +15,18 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
     @EntityGraph(attributePaths = "categories")
     List<Book> findAll(Specification<Book> spec);
 
+    @EntityGraph(attributePaths = "categories")
     List<Book> findAllByAuthorContainingIgnoreCase(String author);
 
+    @EntityGraph(attributePaths = "categories")
     List<Book> findAllByPriceBetween(BigDecimal from, BigDecimal to, Pageable pageable);
 
+    @EntityGraph(attributePaths = "categories")
     @Query("FROM Book b JOIN FETCH b.categories c "
             + "WHERE c.id = :categoryId")
     List<Book> findAllByCategoryId(Long categoryId, Pageable pageable);
 
+    @EntityGraph(attributePaths = "categories")
     @Query("FROM Book b join FETCH b.categories c "
             + "WHERE b.id = :id AND b.isDeleted = false AND  c.isDeleted = false ")
     Optional<Book> getBookById(Long id);

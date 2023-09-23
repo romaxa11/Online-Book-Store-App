@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cart-items-table
+      author: mate_academy
+      changes:
+        - createTable:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: shopping_cart_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cart_items-shopping_carts
+                    references: shopping_carts(user_id)
+                    primaryKey: true
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cart_items_books
+                    references: books(id)
+                    primaryKey: true
+              - column:
+                  name: quantity
+                  type: integer
+                  constraints:
+                    nullable: false
