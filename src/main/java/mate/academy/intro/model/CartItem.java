@@ -12,11 +12,15 @@ import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@SQLDelete(sql = "UPDATE cart_items SET is_deleted = true WHERE id = ?")
+@Where(clause = "is_deleted = false")
 @Table(name = "cart_items")
 public class CartItem {
     @Id
@@ -31,4 +35,6 @@ public class CartItem {
     @Min(0)
     @Column(name = "quantity", nullable = false)
     private int quantity;
+    @Column(nullable = false, name = "is_deleted")
+    private boolean isDeleted;
 }

@@ -10,6 +10,6 @@ public class CreateCartItemRequestDto {
     @Min(1)
     private Long bookId;
     @NotNull
-    @Min(0)
+    @Min(value = 1, message = "The Quantity must be equal to or greater than one")
     private int quantity;
 }
