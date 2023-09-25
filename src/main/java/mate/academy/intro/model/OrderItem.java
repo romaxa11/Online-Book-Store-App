@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,22 +20,25 @@ import org.hibernate.annotations.Where;
 @Setter
 @NoArgsConstructor
 @Entity
-@SQLDelete(sql = "UPDATE cart_items SET is_deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE order_items SET is_deleted = true WHERE id = ?")
 @Where(clause = "is_deleted = false")
-@Table(name = "cart_items")
-public class CartItem {
+@Table(name = "order_items")
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "shopping_cart_id", nullable = false)
-    private ShoppingCart shoppingCart;
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
-    @Min(1)
+    @Min(value = 1, message = "The Quantity must be equal to or greater than one")
     @Column(name = "quantity", nullable = false)
     private int quantity;
+    @Min(0)
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
     @Column(nullable = false, name = "is_deleted")
     private boolean isDeleted;
 }
