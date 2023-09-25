@@ -39,8 +39,6 @@ public class Order {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private User user;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
