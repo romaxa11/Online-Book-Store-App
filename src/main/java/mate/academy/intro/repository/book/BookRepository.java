@@ -27,7 +27,5 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
     List<Book> findAllByCategoryId(Long categoryId, Pageable pageable);
 
     @EntityGraph(attributePaths = "categories")
-    @Query("FROM Book b join FETCH b.categories c "
-            + "WHERE b.id = :id AND b.isDeleted = false AND  c.isDeleted = false ")
     Optional<Book> getBookById(Long id);
 }

@@ -7,12 +7,14 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import mate.academy.intro.validation.Cover;
 import mate.academy.intro.validation.InternationalStandardBookNumber;
 import mate.academy.intro.validation.Text;
 
 @Data
 @Text
+@Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateBookRequestDto {
     private String title;
