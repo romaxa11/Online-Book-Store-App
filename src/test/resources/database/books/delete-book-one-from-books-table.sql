@@ -1,0 +1,1 @@
+delete from books where isbn = 'ISBN-10: 0-596-52068-5';
