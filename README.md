@@ -1,5 +1,9 @@
+
+![](/Users/a1111/Downloads/1326370.png)
 # Online-Book-Store-App
 ## Online Book Store Application based on Spring Boot
+
+![LogosFinalProject.png](..%2F..%2FDocuments%2FGraphic%2FLogosFinalProject.png)
 
 We are going to implement an app for Online Book store. We will implement it step by step. In this app we will have the following domain models (entities):
 
